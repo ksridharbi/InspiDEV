@@ -1,0 +1,150 @@
+table Orders
+	lineageTag: 3d5d9fa7-4288-4e95-938b-c7ff44919aeb
+
+	column OrderID
+		dataType: int64
+		formatString: 0
+		lineageTag: 9e163863-93b9-4f0b-99dc-8c4c9129a7cd
+		summarizeBy: none
+		sourceColumn: OrderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerID
+		dataType: string
+		lineageTag: 2a3aa60f-05a8-4466-8787-2392044cff94
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmployeeID
+		dataType: int64
+		formatString: 0
+		lineageTag: ebddee0e-d9ed-40df-9597-2196178ede9e
+		summarizeBy: none
+		sourceColumn: EmployeeID
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 8e5fcf78-a2a3-45ef-ba7b-d70a1931a231
+		summarizeBy: none
+		sourceColumn: OrderDate
+
+		variation Variation
+			isDefault
+			relationship: 3aaf4e09-2de9-4f76-8314-68d56642ebee
+			defaultHierarchy: LocalDateTable_27a68937-de40-4847-8a2f-f3ef9758f4bc.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column RequiredDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 55101e9b-ba75-460e-8016-4be453676f12
+		summarizeBy: none
+		sourceColumn: RequiredDate
+
+		variation Variation
+			isDefault
+			relationship: 655cfa80-98d0-4787-967a-ba720171bd5c
+			defaultHierarchy: LocalDateTable_dc99cbdc-9843-42e0-add0-968a1809c546.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShippedDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f02d13d0-6a6a-4a8c-82be-aaf62b5b8bf2
+		summarizeBy: none
+		sourceColumn: ShippedDate
+
+		variation Variation
+			isDefault
+			relationship: f313105a-e54a-4a8a-924b-af082d9512e1
+			defaultHierarchy: LocalDateTable_b228b668-279a-416b-9b41-f828847b062d.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipVia
+		dataType: int64
+		formatString: 0
+		lineageTag: d057c3d4-d40e-4eee-b4f3-a43a72ec0c28
+		summarizeBy: none
+		sourceColumn: ShipVia
+
+		annotation SummarizationSetBy = Automatic
+
+	column Freight
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 37e9fd0c-8719-4652-9f2a-f55293e74874
+		summarizeBy: sum
+		sourceColumn: Freight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column ShipName
+		dataType: string
+		lineageTag: 4d2611c4-19fc-4ad8-88b2-0c8c21285398
+		summarizeBy: none
+		sourceColumn: ShipName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipAddress
+		dataType: string
+		lineageTag: d19548c4-bc9a-4da9-aaf9-a63b65f9c667
+		summarizeBy: none
+		sourceColumn: ShipAddress
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipCity
+		dataType: string
+		lineageTag: 0c97b43c-5f5c-47e2-bf27-5d31cf249323
+		summarizeBy: none
+		sourceColumn: ShipCity
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipRegion
+		dataType: string
+		lineageTag: bf962013-86fe-4d91-827a-1babc5b219e9
+		summarizeBy: none
+		sourceColumn: ShipRegion
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipPostalCode
+		dataType: string
+		lineageTag: a4b1af6f-f722-4389-a575-51ed9cad015d
+		summarizeBy: none
+		sourceColumn: ShipPostalCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipCountry
+		dataType: string
+		lineageTag: 12f35c75-427b-4bdb-84f4-18b1207c1f84
+		summarizeBy: none
+		sourceColumn: ShipCountry
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Orders = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("INSDWOBI", "Northwind"),
+				    dbo_Orders = Source{[Schema="dbo",Item="Orders"]}[Data]
+				in
+				    dbo_Orders
+
+	annotation PBI_ResultType = Table
+

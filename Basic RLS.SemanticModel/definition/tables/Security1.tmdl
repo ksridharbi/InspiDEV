@@ -1,0 +1,44 @@
+table Security1
+	lineageTag: 017c3cae-a262-43e6-bd4a-95ff531fc98f
+
+	column UserID
+		dataType: int64
+		formatString: 0
+		lineageTag: 14b0c5c8-5011-428f-84b2-b48fb4aa239c
+		summarizeBy: count
+		sourceColumn: UserID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Email
+		dataType: string
+		lineageTag: cd8386f8-6040-4c40-bfbb-caf6002751cc
+		summarizeBy: none
+		sourceColumn: Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: b9c5b66a-78cf-4d06-ab58-831fc72c9a5c
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Security1 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\skamatam\Downloads\Security+Table.xlsx"), null, true),
+				    Security1_Sheet = Source{[Item="Security1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Security1_Sheet, [PromoteAllScalars=true]),
+				    #"Filtered Rows" = Table.SelectRows(#"Promoted Headers", each ([UserID] <> null)),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Filtered Rows",{{"UserID", Int64.Type}, {"Email", type text}, {"State", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

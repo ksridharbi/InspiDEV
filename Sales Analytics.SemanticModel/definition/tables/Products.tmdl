@@ -1,0 +1,104 @@
+table Products
+	lineageTag: 13c36232-490f-4ea0-b681-4c79aeed18e8
+
+	column ProductID
+		dataType: int64
+		formatString: 0
+		lineageTag: 61f7021e-0a7a-4db0-98e0-130a16ac5ecb
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductName
+		dataType: string
+		lineageTag: 400ef855-bfc8-46b8-aba5-8768026422fc
+		summarizeBy: none
+		sourceColumn: ProductName
+
+		annotation SummarizationSetBy = Automatic
+
+	column SupplierID
+		dataType: int64
+		formatString: 0
+		lineageTag: f80f3e8f-c29e-4ee0-9204-b914d2a0ee02
+		summarizeBy: none
+		sourceColumn: SupplierID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CategoryID
+		dataType: int64
+		formatString: 0
+		lineageTag: 601f6162-ce7d-49fb-871e-7a3512c3ce2f
+		summarizeBy: none
+		sourceColumn: CategoryID
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuantityPerUnit
+		dataType: string
+		lineageTag: e2aa7334-a502-436b-a0bc-c564713a7fb9
+		summarizeBy: none
+		sourceColumn: QuantityPerUnit
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitPrice
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 91d6e106-a8d5-491c-89e9-cd9c2493fe98
+		summarizeBy: sum
+		sourceColumn: UnitPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column UnitsInStock
+		dataType: int64
+		formatString: 0
+		lineageTag: ab5a47c8-256d-409c-bdf8-492c089e8b45
+		summarizeBy: sum
+		sourceColumn: UnitsInStock
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitsOnOrder
+		dataType: int64
+		formatString: 0
+		lineageTag: 7ca93d95-0742-411d-849c-e9c413eda5b6
+		summarizeBy: sum
+		sourceColumn: UnitsOnOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReorderLevel
+		dataType: int64
+		formatString: 0
+		lineageTag: e037b95c-7d47-4727-9e64-444987ccbbe3
+		summarizeBy: sum
+		sourceColumn: ReorderLevel
+
+		annotation SummarizationSetBy = Automatic
+
+	column Discontinued
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4d387be5-cf32-4229-aeff-59c2d47ec970
+		summarizeBy: none
+		sourceColumn: Discontinued
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Products = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("INSDWOBI", "Northwind"),
+				    dbo_Products = Source{[Schema="dbo",Item="Products"]}[Data]
+				in
+				    dbo_Products
+
+	annotation PBI_ResultType = Table
+

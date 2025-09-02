@@ -1,0 +1,33 @@
+table PLS
+	lineageTag: 10b5fed7-1902-4a7a-ad3d-d7cb71a1c285
+
+	column Email
+		dataType: string
+		lineageTag: 8948e261-580f-4110-9b6c-fc6baa84f44e
+		summarizeBy: none
+		sourceColumn: Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Page Access'
+		dataType: string
+		lineageTag: b81613f9-b7e8-4327-a7e9-0caf45cd3045
+		summarizeBy: none
+		sourceColumn: Page Access
+
+		annotation SummarizationSetBy = Automatic
+
+	partition PLS = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\skamatam\Downloads\Page-Level+Security.xlsx"), null, true),
+				    PLS_Sheet = Source{[Item="PLS",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(PLS_Sheet, [PromoteAllScalars=true])
+				in
+				    #"Promoted Headers"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

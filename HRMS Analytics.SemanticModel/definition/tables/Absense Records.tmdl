@@ -1,0 +1,66 @@
+table 'Absense Records'
+	lineageTag: 9915eac4-ffa8-46b0-a212-aeacefbbff7b
+
+	column 'Counter  all'
+		dataType: int64
+		formatString: 0
+		lineageTag: b7b1da5a-3af6-467a-b5b1-41bdb7c1d942
+		summarizeBy: sum
+		sourceColumn: Counter  all
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Counter day'
+		dataType: int64
+		formatString: 0
+		lineageTag: c42b76fa-4e11-4d66-9308-f0d91c290331
+		summarizeBy: sum
+		sourceColumn: Counter day
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Absense Date'
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 87870933-fd32-4f24-ab72-4f7388d93192
+		summarizeBy: none
+		sourceColumn: Absense Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'Employee ID'
+		dataType: int64
+		formatString: 0
+		lineageTag: 4b9304d1-5a9b-4ea8-92ca-53feb670280f
+		summarizeBy: none
+		sourceColumn: Employee ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Absent true'
+		dataType: int64
+		formatString: 0
+		lineageTag: 317256d7-9000-4db1-8ad2-621257ee358a
+		summarizeBy: sum
+		sourceColumn: Absent true
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Absense Records' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\skamatam\Downloads\HRM.xlsx"), null, true),
+				    Absense_Table = Source{[Item="Absense",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Absense_Table,{{"Counter  all", Int64.Type}, {"Counter day", Int64.Type}, {"Absense Date", type date}, {"Employee ID", Int64.Type}, {"Absent true", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

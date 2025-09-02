@@ -1,0 +1,68 @@
+expression 'Stores - construction costs' =
+		let
+		    Source = Excel.Workbook(File.Contents("E:\Udemy - Storage\12  - 15 Days of Power BI\Data\Day 4\Data\Store costs.xlsx"), null, true),
+		    #"Stores - construction costs_Sheet" = Source{[Item="Stores - construction costs",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Stores - construction costs_Sheet", [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: 38061070-0ded-4cde-b4c6-e32566668e46
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression sales2017 =
+		let
+		    Source = Csv.Document(File.Contents("E:\Udemy - Storage\12  - 15 Days of Power BI\Data\Day 1\data\sales data\sales2017_raw.csv"),[Delimiter=",", Columns=17, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Removed Top Rows" = Table.Skip(Source,2),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+		    #"Removed Blank Rows" = Table.SelectRows(#"Promoted Headers", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null}))),
+		    #"Filtered Rows" = Table.SelectRows(#"Removed Blank Rows", each ([product_id] <> "" and [product_id] <> "NA")),
+		    #"Removed Duplicates" = Table.Distinct(#"Filtered Rows"),
+		    #"Removed Columns" = Table.RemoveColumns(#"Removed Duplicates",{"column3"}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"order_date", "Order Date"}}),
+		    #"Reordered Columns" = Table.ReorderColumns(#"Renamed Columns",{"order_id (unique)", "product_id", "store_id", "Order Date", "order_date_2", "sales", "revenue", "stock", "price", "promo_type_1", "promo_bin_1", "promo_type_2", "promo_bin_2", "promo_discount_2", "delivery_date_format1", "delivery_date_format2"}),
+		    #"Changed Type with Locale" = Table.TransformColumnTypes(#"Reordered Columns", {{"delivery_date_format2", type date}}, "en-GB"),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Changed Type with Locale",{{"delivery_date_format1", type date}}),
+		    #"Removed Columns1" = Table.RemoveColumns(#"Changed Type",{"promo_bin_2", "promo_discount_2"}),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Removed Columns1",{{"price", type text}, {"order_id (unique)", Int64.Type}, {"order_date_2", type date}, {"Order Date", type date}, {"revenue", Currency.Type}, {"stock", Int64.Type}}),
+		    #"Replaced Value" = Table.ReplaceValue(#"Changed Type1","NA","",Replacer.ReplaceText,{"price"}),
+		    #"Changed Type2" = Table.TransformColumnTypes(#"Replaced Value",{{"price", Currency.Type}}),
+		    #"Replaced Value1" = Table.ReplaceValue(#"Changed Type2"," sales","",Replacer.ReplaceText,{"sales"}),
+		    #"Changed Type3" = Table.TransformColumnTypes(#"Replaced Value1",{{"sales", Int64.Type}}),
+		    #"Renamed Columns1" = Table.RenameColumns(#"Changed Type3",{{"order_id (unique)", "order_id"}})
+		in
+		    #"Renamed Columns1"
+	lineageTag: 3169689a-0bbc-490a-82da-a01fc1474ced
+	queryGroup: 'Helper Table'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression sales2018 =
+		let
+		    Source = Csv.Document(File.Contents("E:\Udemy - Storage\12  - 15 Days of Power BI\Data\Day 3\Data\additional sales data\2018-2019\sales2018.csv"),[Delimiter=",", Columns=16, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: 386224c6-fb43-454a-b142-b6264bbb255d
+	queryGroup: 'Helper Table'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression sales2019 =
+		let
+		    Source = Csv.Document(File.Contents("E:\Udemy - Storage\12  - 15 Days of Power BI\Data\Day 3\Data\additional sales data\2018-2019\sales2019.csv"),[Delimiter=",", Columns=16, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: c7e1bea3-678d-44bc-8735-2c8d61d10631
+	queryGroup: 'Helper Table'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

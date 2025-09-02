@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Dataflow",
+    "displayName": "GTHUBDATAFlow"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "87f3299d-f3c1-9668-447b-65cddba38817"
+  }
+}

@@ -1,0 +1,102 @@
+table Customers
+	lineageTag: 3caea653-fbca-4f53-9c8e-c76e602e7000
+
+	column CustomerID
+		dataType: string
+		lineageTag: b4b35681-5a54-4602-a4d3-b49e8cd4b60b
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CompanyName
+		dataType: string
+		lineageTag: f588dab6-5dc6-4379-b7b4-487b9f240f53
+		summarizeBy: none
+		sourceColumn: CompanyName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ContactName
+		dataType: string
+		lineageTag: 32dfa80d-4b76-498a-a652-949c0e2a1eb0
+		summarizeBy: none
+		sourceColumn: ContactName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ContactTitle
+		dataType: string
+		lineageTag: 54f784a9-2754-4f85-a60d-0ee7bce214de
+		summarizeBy: none
+		sourceColumn: ContactTitle
+
+		annotation SummarizationSetBy = Automatic
+
+	column Address
+		dataType: string
+		lineageTag: 02c4ff6a-7a4b-47da-b580-da85525b2c5a
+		summarizeBy: none
+		sourceColumn: Address
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: c0e2aef8-0eef-49ca-a2af-0ff291623138
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: b3943a69-d903-4c84-bd64-38bf3bfc0fad
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column PostalCode
+		dataType: string
+		lineageTag: 0198b6d4-db66-4d87-bf9d-7cda7e216995
+		summarizeBy: none
+		sourceColumn: PostalCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 27600db4-5d10-450b-9431-413b686af0c6
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Phone
+		dataType: string
+		lineageTag: ad8ca2d6-829e-45e9-95a5-f932260b40c4
+		summarizeBy: none
+		sourceColumn: Phone
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fax
+		dataType: string
+		lineageTag: 787d55ff-8c7d-47ff-98ca-d6ed50bfa53c
+		summarizeBy: none
+		sourceColumn: Fax
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Customers = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("INSDWOBI", "Northwind"),
+				    dbo_Customers = Source{[Schema="dbo",Item="Customers"]}[Data]
+				in
+				    dbo_Customers
+
+	annotation PBI_ResultType = Table
+

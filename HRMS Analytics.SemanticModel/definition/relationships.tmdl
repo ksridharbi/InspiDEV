@@ -1,0 +1,32 @@
+relationship c9030845-80c3-420f-be52-c40fcf876a8e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Calendar DOB'.Date
+	toColumn: LocalDateTable_421ea6a0-c74c-4cf9-99d4-169a828994e6.Date
+
+relationship 4d05ca70-cbd0-46e5-9a35-f2c71af9afed
+	joinOnDateBehavior: datePartOnly
+	fromColumn: CalendarAbsense.Date
+	toColumn: LocalDateTable_28e9cc42-0562-4c0d-949d-3b4cb84ea70a.Date
+
+relationship AutoDetected_d5085867-d067-44ba-b593-1bf1f08e8676
+	fromColumn: 'HRM Database'.'City name'
+	toColumn: GEO_DATA.City
+
+relationship f296896a-39d5-a8e5-5c04-ba96b22f782e
+	fromColumn: 'HRM Database'.'Date of Birth'
+	toColumn: 'Calendar DOB'.Date
+
+relationship ecb8e60f-4dc2-943d-fc9c-aca9979bb208
+	fromColumn: 'Absense Records'.'Employee ID'
+	toColumn: 'HRM Database'.EmployeeNumber
+
+relationship d726a92c-5bba-8574-fe2e-85735a471313
+	fromColumn: 'Absense Records'.'Absense Date'
+	toColumn: CalendarAbsense.Date
+
+relationship AutoDetected_734042ab-eda2-4fa3-aca0-b6b5c4d402af
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Table1.EmployeeNumber
+	toColumn: 'HRM Database'.EmployeeNumber
+

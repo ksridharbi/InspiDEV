@@ -1,0 +1,38 @@
+relationship 03e31a11-a83f-47b5-a235-62ecaebf546a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: sales2018-2019.delivery_date_format1
+	toColumn: LocalDateTable_6a476db2-99e2-4334-bce0-f8176fea1617.Date
+
+relationship 1d47648a-a224-4a20-a237-c37413e5edec
+	joinOnDateBehavior: datePartOnly
+	fromColumn: sales2018-2019.delivery_date_format2
+	toColumn: LocalDateTable_c408af42-773b-4176-b757-865fcd4929f6.Date
+
+relationship 09a8c1e2-1617-49e2-b5b8-a350d62825b9
+	fromColumn: sales2018-2019.product_id
+	toColumn: producthierarchy.product_id
+
+relationship 62b9a1ee-1ecf-496b-8b97-bb190a2b3041
+	toCardinality: many
+	fromColumn: sales2018-2019.store_id
+	toColumn: stores.store_id
+
+relationship b07c87e7-a810-4fcc-9444-62b11c87ef7a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Date Dimension'.'Order Date'
+	toColumn: LocalDateTable_90dbc82a-2d5e-4ca1-ab91-0ff4e47e9c19.Date
+
+relationship b5106696-acd5-44ac-bc9b-4006dd5e412b
+	fromColumn: sales2018-2019.'Order Date'
+	toColumn: 'Date Dimension'.'Order Date'
+
+relationship 909d1a34-f039-49c6-87a9-91223feb533d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DateTable.Date
+	toColumn: LocalDateTable_cbe99472-2a9e-4e90-a018-77a35d93eb72.Date
+
+relationship 44c5c68b-1d3f-266e-3c85-7b5d0df3e257
+	toCardinality: many
+	fromColumn: stores.state
+	toColumn: Security1.State
+

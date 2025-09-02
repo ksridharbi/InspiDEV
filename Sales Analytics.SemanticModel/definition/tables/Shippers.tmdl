@@ -1,0 +1,39 @@
+table Shippers
+	lineageTag: 9b793959-ce01-402b-a685-46856a29b64e
+
+	column ShipperID
+		dataType: int64
+		formatString: 0
+		lineageTag: 5d898be4-0436-412f-a429-1bdfa6df25bf
+		summarizeBy: none
+		sourceColumn: ShipperID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CompanyName
+		dataType: string
+		lineageTag: bea52789-6d13-40dd-9b2e-3f991cd651c8
+		summarizeBy: none
+		sourceColumn: CompanyName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Phone
+		dataType: string
+		lineageTag: 691c7ee8-ea3d-485e-85bd-defb4bb350e5
+		summarizeBy: none
+		sourceColumn: Phone
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Shippers = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("INSDWOBI", "Northwind"),
+				    dbo_Shippers = Source{[Schema="dbo",Item="Shippers"]}[Data]
+				in
+				    dbo_Shippers
+
+	annotation PBI_ResultType = Table
+

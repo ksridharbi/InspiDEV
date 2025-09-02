@@ -1,0 +1,86 @@
+table 'Measure Table'
+	lineageTag: 51eb843b-6888-4ff8-b249-3342a4eb6732
+
+	measure '5% Split of Average Price' = AVERAGE('sales2018-2019'[price])*0.05
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 8500252f-7f7d-46da-8bb6-04fb906ec8c2
+
+	measure '5% Revenue Split' = SUM('sales2018-2019'[revenue]) * 0.05
+		lineageTag: 69f71fe3-9cef-4f89-bf4f-c8dd90dab33d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Number of different prices' = DISTINCTCOUNT('sales2018-2019'[price])
+		formatString: 0
+		lineageTag: cb67a4c2-a6b7-45dd-afde-6256a69fdbb8
+
+	measure 'Number of prices' = COUNTROWS('sales2018-2019')
+		formatString: 0
+		lineageTag: 82a78a3e-b209-4de7-8931-8d5827a4c3b5
+
+	measure Alternative_revenue = SUMX('sales2018-2019','sales2018-2019'[price]*'sales2018-2019'[sales])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 7e21eb51-16ea-4d17-8995-1d5f67669841
+
+	measure 'Average Base Dimension' = ROUND(AVERAGEX(producthierarchy,producthierarchy[depth]*producthierarchy[length]),-1)
+		lineageTag: 7e2e2e1e-edd3-433a-b4a0-5127679a97b4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Cost of logistics service' = [Alternative_revenue] * 0.25
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 9412801f-341a-408b-bdd7-1c07f6a3e9e7
+
+	measure 'Complete Cost of logistics service' = ```
+			
+			
+			// Alternative method just for the states of California and Florida as we have special contracts there.
+			CALCULATE(
+			    SUMX('sales2018-2019','sales2018-2019'[sales]*RELATED(producthierarchy[volume])*0.001),
+			        FILTER(stores,stores[state]="California" || stores[state]="Florida") ) + 
+			
+			
+			// General method all states except California and Florida.
+			CALCULATE(
+			    [Alternative_revenue]*0.25,
+			        FILTER(stores,stores[state]<>"California" && stores[state]<>"Florida"))
+			```
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 36196c84-5168-4f84-83de-afd457588fd4
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Cost in Florida' = CALCULATE(SUMX('sales2018-2019','sales2018-2019'[sales]*RELATED(producthierarchy[volume])*0.001),FILTER(stores,stores[state]="Florida"))
+		lineageTag: 502903a3-59f9-4233-b0eb-3300c0d9cfe7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Percentage of states' = CALCULATE([Complete Cost of logistics service],ALLEXCEPT(stores,stores[state])) / CALCULATE([Complete Cost of logistics service],ALL(stores))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: cafb2100-e880-47bd-acbd-c42f3b1b60a1
+
+	measure 'Denominator (All)' = CALCULATE([Complete Cost of logistics service],ALL(stores))
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: f55d1b07-4be5-4c72-92ba-b4f756a20bcf
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Cost YTD' =
+			
+			CALCULATE([Complete Cost of logistics service], DATESQTD('Date Dimension'[Order Date]))
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 68051c69-7566-4921-9abc-36cc5111b8fe
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	partition 'Measure Table-95b4dee9-df8c-41e0-ba21-cf9bd30d651a' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WSilWio0FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Removed Columns" = Table.RemoveColumns(Source,{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

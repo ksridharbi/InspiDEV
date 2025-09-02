@@ -1,0 +1,74 @@
+table 'Calendar DOB'
+	lineageTag: 2d241fd5-045d-4836-bf64-695f4da66841
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9ba90f19-9a08-4761-8d5a-14d263821c00
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: c9030845-80c3-420f-be52-c40fcf876a8e
+			defaultHierarchy: LocalDateTable_421ea6a0-c74c-4cf9-99d4-169a828994e6.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: decc8451-33fb-4779-bf29-1c808e81d947
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 13f52382-c1df-4548-8c2f-034b293f317a
+		summarizeBy: sum
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: c60dc50e-7775-4f28-97f2-f38f3c0a09b4
+		summarizeBy: sum
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		dataType: int64
+		formatString: 0
+		lineageTag: 103e3232-f7e5-4590-9c25-5fe2b64d5400
+		summarizeBy: sum
+		sourceColumn: Day
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Calendar DOB' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\skamatam\Downloads\HRM.xlsx"), null, true),
+				    Calendar_Table = Source{[Item="Calendar",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Calendar_Table,{{"Date", type date}}),
+				    #"Inserted Year" = Table.AddColumn(#"Changed Type", "Year", each Date.Year([Date]), Int64.Type),
+				    #"Inserted Quarter" = Table.AddColumn(#"Inserted Year", "Quarter", each Date.QuarterOfYear([Date]), Int64.Type),
+				    #"Inserted Month" = Table.AddColumn(#"Inserted Quarter", "Month", each Date.Month([Date]), Int64.Type),
+				    #"Inserted Day" = Table.AddColumn(#"Inserted Month", "Day", each Date.Day([Date]), Int64.Type),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Inserted Day",{{"Quarter", Int64.Type}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,39 @@
+table P1
+	lineageTag: a298b8b0-e20f-46d7-ad1c-089b34e576dc
+	sourceLineageTag: [dbo].[P1]
+
+	column ProductID
+		dataType: int64
+		formatString: 0
+		lineageTag: d4702304-7c83-41c3-ad90-557da3ee08b4
+		sourceLineageTag: ProductID
+		summarizeBy: count
+		sourceColumn: ProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductName
+		dataType: string
+		lineageTag: 6e38df9b-f06e-4f4d-80f0-b19f91e7febf
+		sourceLineageTag: ProductName
+		summarizeBy: none
+		sourceColumn: ProductName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ImageURL
+		dataType: string
+		lineageTag: 2998f425-3006-44a3-b71a-6d815e187cc5
+		sourceLineageTag: ImageURL
+		summarizeBy: none
+		sourceColumn: ImageURL
+
+		annotation SummarizationSetBy = Automatic
+
+	partition P1 = entity
+		mode: directLake
+		source
+			entityName: P1
+			schemaName: dbo
+			expressionSource: 'DirectLake - INSPIDEV'
+

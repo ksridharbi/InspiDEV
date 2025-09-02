@@ -1,0 +1,71 @@
+table 'Order Details'
+	lineageTag: a0ccfd22-831a-41e8-9923-bf59c7fc342f
+
+	column OrderID
+		dataType: int64
+		formatString: 0
+		lineageTag: fc160886-2d53-4f06-902f-7584bca6be8e
+		summarizeBy: none
+		sourceColumn: OrderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductID
+		dataType: int64
+		formatString: 0
+		lineageTag: d681c90a-1c9e-46bb-af2b-14b996eadd23
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitPrice
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 07fcd786-0f94-4698-b476-a93c0df4aaf8
+		summarizeBy: sum
+		sourceColumn: UnitPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 62720732-9215-4271-8561-9ed4f77827ed
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Discount
+		dataType: double
+		lineageTag: 9e7455f4-3092-4f8c-b5cc-0e307e31ef88
+		summarizeBy: sum
+		sourceColumn: Discount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Sales = 'Order Details'[UnitPrice]*'Order Details'[Quantity]
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 3b35b347-a9c5-4811-a87a-3d83b55b4192
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	partition 'Order Details' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("INSDWOBI", "Northwind"),
+				    #"dbo_Order Details" = Source{[Schema="dbo",Item="Order Details"]}[Data]
+				in
+				    #"dbo_Order Details"
+
+	annotation PBI_ResultType = Table
+

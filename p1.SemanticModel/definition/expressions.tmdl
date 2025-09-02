@@ -1,0 +1,9 @@
+expression 'DirectLake - INSPIDEV' =
+		let
+		    Source = AzureStorage.DataLake("https://onelake.dfs.fabric.microsoft.com/15e8bd13-cceb-4532-b440-2880c41b4cd0/4f8dcee3-7e25-4e6a-b740-8b2ae00cfb8b", [HierarchicalNavigation=true])
+		in
+		    Source
+	lineageTag: 300fae9e-59df-4f4e-8691-539b3d924744
+
+	annotation PBI_IncludeFutureArtifacts = False
+

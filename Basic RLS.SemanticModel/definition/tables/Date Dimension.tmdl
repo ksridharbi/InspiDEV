@@ -1,0 +1,73 @@
+table 'Date Dimension'
+	lineageTag: b0e0481e-1359-4627-8465-e533ae63b647
+
+	column 'Order Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 37b67e89-6735-4091-8317-b21d7858cbcc
+		summarizeBy: none
+		sourceColumn: Order Date
+
+		variation Variation
+			isDefault
+			relationship: b07c87e7-a810-4fcc-9444-62b11c87ef7a
+			defaultHierarchy: LocalDateTable_90dbc82a-2d5e-4ca1-ab91-0ff4e47e9c19.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Weekday
+		dataType: string
+		lineageTag: f4c5a61e-a60e-4601-8646-70f5da3db6d1
+		summarizeBy: none
+		sourceColumn: Weekday
+		sortByColumn: WeekDayOrder
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column 'First Characters'
+		dataType: string
+		lineageTag: 22aed364-c269-4b4e-93bd-dd7fbdf8a6bf
+		summarizeBy: none
+		sourceColumn: First Characters
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column WeekDayOrder
+		dataType: string
+		lineageTag: 5e177cca-35af-449d-87c1-ef36709416c0
+		summarizeBy: none
+		sourceColumn: WeekDayOrder
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column 'New Date Format' = FORMAT('Date Dimension'[Order Date],"dddd, mmmm d","en-us")
+		lineageTag: b688b25a-22f3-45a8-a3d6-c8f30cff4bca
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	partition 'Date Dimension-165ec5db-9b0c-475b-90e7-d71005f86301' = m
+		mode: import
+		source =
+				let
+				    Source = #"sales2018-2019",
+				    #"Removed Other Columns" = Table.SelectColumns(Source,{"Order Date"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns"),
+				    #"Inserted Day Name" = Table.AddColumn(#"Removed Duplicates", "Weekday", each Date.DayOfWeekName([Order Date]), type text),
+				    #"Inserted First Characters" = Table.AddColumn(#"Inserted Day Name", "First Characters", each Text.Start([Weekday], 1), type text),
+				    #"Added Conditional Column" = Table.AddColumn(#"Inserted First Characters", "WeekDayOrder", each if [Weekday] = "Monday" then 1 else if [Weekday] = "Tuesday" then 2 else if Text.StartsWith([Weekday], "W") then 3 else if Text.StartsWith([Weekday], "Th") then 4 else if Text.StartsWith([Weekday], "F") then 5 else if Text.StartsWith([Weekday], "Sa") then 6 else 7)
+				in
+				    #"Added Conditional Column"
+
+	annotation PBI_ResultType = Table
+
