@@ -1,0 +1,180 @@
+table Table1
+	lineageTag: 33c29d14-135e-42fc-9af2-8487857e1018
+
+	column Age
+		dataType: int64
+		formatString: 0
+		lineageTag: 6b90f314-7a5f-40b2-bb23-2a76d72dc7f3
+		summarizeBy: sum
+		sourceColumn: Age
+
+		annotation SummarizationSetBy = Automatic
+
+	column Attrition
+		dataType: string
+		lineageTag: 1e409d9a-4947-4f65-a9f9-af7823f4f94c
+		summarizeBy: none
+		sourceColumn: Attrition
+
+		annotation SummarizationSetBy = Automatic
+
+	column DailyRate
+		dataType: int64
+		formatString: 0
+		lineageTag: 5713b015-f14f-4988-a6f7-c6aa5e2efaf9
+		summarizeBy: sum
+		sourceColumn: DailyRate
+
+		annotation SummarizationSetBy = Automatic
+
+	column Department
+		dataType: string
+		lineageTag: 3b9545e8-7a5f-40be-820c-bf94ea6a2b16
+		summarizeBy: none
+		sourceColumn: Department
+
+		annotation SummarizationSetBy = Automatic
+
+	column DistanceFromHome
+		dataType: int64
+		formatString: 0
+		lineageTag: 6deff93f-5164-4f07-b212-e02a29238a01
+		summarizeBy: sum
+		sourceColumn: DistanceFromHome
+
+		annotation SummarizationSetBy = Automatic
+
+	column Education
+		dataType: int64
+		formatString: 0
+		lineageTag: 82daa92a-7d01-4f2a-842b-f70a134819d2
+		summarizeBy: sum
+		sourceColumn: Education
+
+		annotation SummarizationSetBy = Automatic
+
+	column EducationField
+		dataType: string
+		lineageTag: 42f43ea6-fb7e-45fa-a935-29e4c59faf72
+		summarizeBy: none
+		sourceColumn: EducationField
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmployeeCount
+		dataType: int64
+		formatString: 0
+		lineageTag: 7e72cf9d-e321-450e-ae1b-9e355dbe54d7
+		summarizeBy: sum
+		sourceColumn: EmployeeCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmployeeNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: dbfac62c-da68-421d-97b7-ae45853e236b
+		summarizeBy: none
+		sourceColumn: EmployeeNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column EnvironmentSatisfaction
+		dataType: int64
+		formatString: 0
+		lineageTag: 6c7f46f8-026e-4e3f-8a4b-acc0e0e2f3ce
+		summarizeBy: sum
+		sourceColumn: EnvironmentSatisfaction
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		lineageTag: 0cd77199-7a37-4159-b1c6-5f2ff32e8419
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column JobLevel
+		dataType: int64
+		formatString: 0
+		lineageTag: a6a73fea-82f8-4e60-87d3-52174a100581
+		summarizeBy: sum
+		sourceColumn: JobLevel
+
+		annotation SummarizationSetBy = Automatic
+
+	column JobRole
+		dataType: string
+		lineageTag: 7d14fe60-41de-43a3-9209-e81da013aed8
+		summarizeBy: none
+		sourceColumn: JobRole
+
+		annotation SummarizationSetBy = Automatic
+
+	column JobSatisfaction
+		dataType: int64
+		formatString: 0
+		lineageTag: 07da0974-b3b6-410f-b2d4-3b84838b2e56
+		summarizeBy: sum
+		sourceColumn: JobSatisfaction
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaritalStatus
+		dataType: string
+		lineageTag: 1ca1fb27-669c-4b44-9cbf-968e4934e517
+		summarizeBy: none
+		sourceColumn: MaritalStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthlyIncome
+		dataType: int64
+		formatString: 0
+		lineageTag: 3445e762-18e6-4dd9-a085-be3ab64a835e
+		summarizeBy: sum
+		sourceColumn: MonthlyIncome
+
+		annotation SummarizationSetBy = Automatic
+
+	column NumCompaniesWorked
+		dataType: int64
+		formatString: 0
+		lineageTag: a9460fcd-2983-4019-89ad-b4883e4a3739
+		summarizeBy: sum
+		sourceColumn: NumCompaniesWorked
+
+		annotation SummarizationSetBy = Automatic
+
+	column PerformanceRating
+		dataType: int64
+		formatString: 0
+		lineageTag: c819de9d-5368-4b91-bc12-27629a62c108
+		summarizeBy: sum
+		sourceColumn: PerformanceRating
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearsAtCompany
+		dataType: int64
+		formatString: 0
+		lineageTag: c0f53542-76da-4fc3-b58f-34ed493cdd77
+		summarizeBy: sum
+		sourceColumn: YearsAtCompany
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Table1 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\skamatam\Downloads\Dummy+data+for+building+HR+dashboard2(1).xlsx"), null, true),
+				    Table1_Table = Source{[Item="Table1",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Table1_Table,{{"Age", Int64.Type}, {"Attrition", type text}, {"DailyRate", Int64.Type}, {"Department", type text}, {"DistanceFromHome", Int64.Type}, {"Education", Int64.Type}, {"EducationField", type text}, {"EmployeeCount", Int64.Type}, {"EmployeeNumber", Int64.Type}, {"EnvironmentSatisfaction", Int64.Type}, {"Gender", type text}, {"JobLevel", Int64.Type}, {"JobRole", type text}, {"JobSatisfaction", Int64.Type}, {"MaritalStatus", type text}, {"MonthlyIncome", Int64.Type}, {"NumCompaniesWorked", Int64.Type}, {"PerformanceRating", Int64.Type}, {"YearsAtCompany", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

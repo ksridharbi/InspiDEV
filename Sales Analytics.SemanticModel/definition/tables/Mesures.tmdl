@@ -1,0 +1,34 @@
+table Mesures
+	lineageTag: 806b63b4-4c1c-4daf-a9aa-678de84cee59
+
+	measure 'Average Sales' = AVERAGE('Order Details'[Sales])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 16751a88-fd0e-4d67-87a4-ee5e1f081136
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Avg Sales / Customer' = ```
+			sum('Order Details'[Sales])/DISTINCTCOUNT(Customers[CustomerID]) 
+			```
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 6227f798-512f-4c41-84e4-99397164e95d
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column Column
+		formatString: 0
+		lineageTag: 922c3845-ed2a-46dc-a7fc-a8b1c48e75e0
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Mesures = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = 90a04425d9fd4580bfca0d463752daed
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

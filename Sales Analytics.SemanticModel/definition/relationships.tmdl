@@ -1,0 +1,67 @@
+relationship 502333ca-44f0-4816-a1a5-e9cba5ad49f4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Employees.BirthDate
+	toColumn: LocalDateTable_556814a1-434a-4ca0-bf0e-84e6cdc9e92c.Date
+
+relationship 2d5da4c6-80bc-426b-8823-e3a3ea29e0ad
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Employees.HireDate
+	toColumn: LocalDateTable_58cea808-3b3c-419a-99f8-e628f93b99f8.Date
+
+relationship 3aaf4e09-2de9-4f76-8314-68d56642ebee
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Orders.OrderDate
+	toColumn: LocalDateTable_27a68937-de40-4847-8a2f-f3ef9758f4bc.Date
+
+relationship 655cfa80-98d0-4787-967a-ba720171bd5c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Orders.RequiredDate
+	toColumn: LocalDateTable_dc99cbdc-9843-42e0-add0-968a1809c546.Date
+
+relationship f313105a-e54a-4a8a-924b-af082d9512e1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Orders.ShippedDate
+	toColumn: LocalDateTable_b228b668-279a-416b-9b41-f828847b062d.Date
+
+relationship 8a847ec5-cdcc-4dda-bf6a-8a96d9a5e481
+	fromColumn: 'Order Details'.OrderID
+	toColumn: Orders.OrderID
+
+	annotation PBI_IsFromSource = FS
+
+relationship 283ba279-b005-4441-808c-2581d57062fc
+	fromColumn: 'Order Details'.ProductID
+	toColumn: Products.ProductID
+
+	annotation PBI_IsFromSource = FS
+
+relationship 77cc06ab-8fcf-45dc-a342-4af0082b07a1
+	fromColumn: Orders.CustomerID
+	toColumn: Customers.CustomerID
+
+	annotation PBI_IsFromSource = FS
+
+relationship 57cc96f4-75af-4d03-b5df-d5f64331ebcd
+	fromColumn: Orders.EmployeeID
+	toColumn: Employees.EmployeeID
+
+	annotation PBI_IsFromSource = FS
+
+relationship 09a8465c-cdde-4a61-8f35-c1cc4b9a6757
+	fromColumn: Orders.ShipVia
+	toColumn: Shippers.ShipperID
+
+	annotation PBI_IsFromSource = FS
+
+relationship 409b8eb5-ab4a-4c27-828f-2b504dbc2abc
+	fromColumn: Products.CategoryID
+	toColumn: Categories.CategoryID
+
+	annotation PBI_IsFromSource = FS
+
+relationship 2ca3c6d3-9bf0-4234-ad30-c1e179f78097
+	fromColumn: Products.SupplierID
+	toColumn: Suppliers.SupplierID
+
+	annotation PBI_IsFromSource = FS
+

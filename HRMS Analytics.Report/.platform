@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "HRMS Analytics"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "86e627af-c834-83de-4e87-a267a9680de7"
+  }
+}

@@ -1,0 +1,26 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["Absense Records","Calendar DOB","CalendarAbsense","GEO_DATA","HRM Database","Table1"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.145.1602.0 (25.07)+10647c9fa319b5e39936cdb21328038c371d1fe4
+
+ref table 'Absense Records'
+ref table DateTableTemplate_71517a8d-9693-46a7-8b8f-bdfa2d2ea632
+ref table 'Calendar DOB'
+ref table LocalDateTable_421ea6a0-c74c-4cf9-99d4-169a828994e6
+ref table CalendarAbsense
+ref table LocalDateTable_28e9cc42-0562-4c0d-949d-3b4cb84ea70a
+ref table GEO_DATA
+ref table 'HRM Database'
+ref table Table1
+
+ref cultureInfo en-US
+

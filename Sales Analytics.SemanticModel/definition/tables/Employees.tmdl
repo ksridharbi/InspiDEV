@@ -1,0 +1,164 @@
+table Employees
+	lineageTag: a9803e52-01a8-4bb7-9808-f2f5eda6f689
+
+	column EmployeeID
+		dataType: int64
+		formatString: 0
+		lineageTag: a97cf61a-5b86-4128-964b-968defa99cca
+		summarizeBy: none
+		sourceColumn: EmployeeID
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastName
+		dataType: string
+		lineageTag: 55ee210d-b7eb-404c-a679-4b042f64ddef
+		summarizeBy: none
+		sourceColumn: LastName
+
+		annotation SummarizationSetBy = Automatic
+
+	column FirstName
+		dataType: string
+		lineageTag: 70da1dfa-e921-4602-8b7d-782a31f3e75a
+		summarizeBy: none
+		sourceColumn: FirstName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Title
+		dataType: string
+		lineageTag: 90ae6215-3c13-4a62-a35f-8b3a60cbbc74
+		summarizeBy: none
+		sourceColumn: Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column TitleOfCourtesy
+		dataType: string
+		lineageTag: 851b9717-d6cb-4404-a5e9-b63d1ab73770
+		summarizeBy: none
+		sourceColumn: TitleOfCourtesy
+
+		annotation SummarizationSetBy = Automatic
+
+	column BirthDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ae26ecfc-59fb-4530-be22-6d5ece84ee65
+		summarizeBy: none
+		sourceColumn: BirthDate
+
+		variation Variation
+			isDefault
+			relationship: 502333ca-44f0-4816-a1a5-e9cba5ad49f4
+			defaultHierarchy: LocalDateTable_556814a1-434a-4ca0-bf0e-84e6cdc9e92c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column HireDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 717deb09-4ab7-42eb-90d0-d44f1758319c
+		summarizeBy: none
+		sourceColumn: HireDate
+
+		variation Variation
+			isDefault
+			relationship: 2d5da4c6-80bc-426b-8823-e3a3ea29e0ad
+			defaultHierarchy: LocalDateTable_58cea808-3b3c-419a-99f8-e628f93b99f8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Address
+		dataType: string
+		lineageTag: 31679861-0df9-491c-a3b9-233066e60c2e
+		summarizeBy: none
+		sourceColumn: Address
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: d8206ea2-d095-4eb6-bb27-e4d2835d9e1e
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: ec8efe80-b60f-4c14-815e-9253b9caf2b6
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column PostalCode
+		dataType: string
+		lineageTag: a887fdea-936f-4825-9ea1-5892d0b9356a
+		summarizeBy: none
+		sourceColumn: PostalCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 63885df1-77cb-4d0f-80e8-741358c6a216
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column HomePhone
+		dataType: string
+		lineageTag: 332f4f46-e9e4-46ac-a1ce-6c182cfb7e20
+		summarizeBy: none
+		sourceColumn: HomePhone
+
+		annotation SummarizationSetBy = Automatic
+
+	column Extension
+		dataType: string
+		lineageTag: c06f3dcb-978e-4d4f-8e2a-9e9a1c18a6e7
+		summarizeBy: none
+		sourceColumn: Extension
+
+		annotation SummarizationSetBy = Automatic
+
+	column Notes
+		dataType: string
+		lineageTag: cb3d3c8c-1e58-4e15-8ca3-41fda1dbc3ac
+		summarizeBy: none
+		sourceColumn: Notes
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReportsTo
+		dataType: int64
+		formatString: 0
+		lineageTag: a9afbfda-b488-4501-a710-96b0fdef2909
+		summarizeBy: sum
+		sourceColumn: ReportsTo
+
+		annotation SummarizationSetBy = Automatic
+
+	column PhotoPath
+		dataType: string
+		lineageTag: 074c076f-303d-4ddb-a26e-a7f097e41d1d
+		summarizeBy: none
+		sourceColumn: PhotoPath
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Employees = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("INSDWOBI", "Northwind"),
+				    dbo_Employees = Source{[Schema="dbo",Item="Employees"]}[Data]
+				in
+				    dbo_Employees
+
+	annotation PBI_ResultType = Table
+

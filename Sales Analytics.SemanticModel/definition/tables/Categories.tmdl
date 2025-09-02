@@ -1,0 +1,39 @@
+table Categories
+	lineageTag: 88c5132a-e2ed-46e6-9eac-d6cc0502adfc
+
+	column CategoryID
+		dataType: int64
+		formatString: 0
+		lineageTag: e128d48e-30ea-403d-8f8e-7090124a0f66
+		summarizeBy: none
+		sourceColumn: CategoryID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CategoryName
+		dataType: string
+		lineageTag: 51ac44a9-28f1-4123-8374-bcc91beaafc4
+		summarizeBy: none
+		sourceColumn: CategoryName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: 4947660c-974d-492b-a844-c5919cd7e292
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Categories = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("INSDWOBI", "Northwind"),
+				    dbo_Categories = Source{[Schema="dbo",Item="Categories"]}[Data]
+				in
+				    dbo_Categories
+
+	annotation PBI_ResultType = Table
+

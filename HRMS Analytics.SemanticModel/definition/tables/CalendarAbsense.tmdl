@@ -1,0 +1,73 @@
+table CalendarAbsense
+	lineageTag: ecbc21e2-6437-4f04-affd-2f1bfe15f78e
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 91d984cd-0db0-49f8-b498-6de29d772f2d
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: 4d05ca70-cbd0-46e5-9a35-f2c71af9afed
+			defaultHierarchy: LocalDateTable_28e9cc42-0562-4c0d-949d-3b4cb84ea70a.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 109a55a4-be56-46f4-b475-bb71283ed0bd
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 2016b5d1-59e0-417a-9a2d-188b74a6b64a
+		summarizeBy: sum
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: 947beb3f-44c9-4bac-8ed4-78a34f207d8f
+		summarizeBy: sum
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		dataType: int64
+		formatString: 0
+		lineageTag: 345f7b00-16cd-4d2f-9cbf-aeb0d129f7b2
+		summarizeBy: sum
+		sourceColumn: Day
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CalendarAbsense = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\skamatam\Downloads\HRM.xlsx"), null, true),
+				    CalendarAbsense_Table = Source{[Item="CalendarAbsense",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(CalendarAbsense_Table,{{"Date", type date}}),
+				    #"Inserted Year" = Table.AddColumn(#"Changed Type", "Year", each Date.Year([Date]), Int64.Type),
+				    #"Inserted Quarter" = Table.AddColumn(#"Inserted Year", "Quarter", each Date.QuarterOfYear([Date]), Int64.Type),
+				    #"Inserted Month" = Table.AddColumn(#"Inserted Quarter", "Month", each Date.Month([Date]), Int64.Type),
+				    #"Inserted Day" = Table.AddColumn(#"Inserted Month", "Day", each Date.Day([Date]), Int64.Type)
+				in
+				    #"Inserted Day"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

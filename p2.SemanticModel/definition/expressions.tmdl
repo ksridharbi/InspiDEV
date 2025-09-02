@@ -1,0 +1,9 @@
+expression 'DirectLake - StagingWarehouseForDataflows_20250807190702' =
+		let
+		    Source = AzureStorage.DataLake("https://onelake.dfs.fabric.microsoft.com/15e8bd13-cceb-4532-b440-2880c41b4cd0/b510c276-24a3-4509-8a3b-ddd5d25e71e2", [HierarchicalNavigation=true])
+		in
+		    Source
+	lineageTag: 7ffdc1ad-e776-4d60-9723-1031be833502
+
+	annotation PBI_IncludeFutureArtifacts = False
+

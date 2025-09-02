@@ -1,0 +1,71 @@
+table GEO_DATA
+	lineageTag: 7c884dda-eaaf-4e16-98ec-c214a9f7f606
+
+	column City
+		dataType: string
+		lineageTag: 9bd0584a-e909-4f5f-a6c1-7e0670436bd1
+		dataCategory: City
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 035855f7-3f7b-46db-bfc6-0d2dfcf16883
+		dataCategory: County
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Lattitude
+		dataType: double
+		formatString: 0.00
+		lineageTag: 0dff0ea4-63be-4c10-9c58-135b461802b1
+		dataCategory: Latitude
+		summarizeBy: none
+		sourceColumn: Lattitude
+
+		annotation SummarizationSetBy = Automatic
+
+	column Longitude
+		dataType: double
+		formatString: 0.00
+		lineageTag: c1c5773a-f453-4bd5-8a50-4884782182ed
+		dataCategory: Longitude
+		summarizeBy: none
+		sourceColumn: Longitude
+
+		annotation SummarizationSetBy = Automatic
+
+	column Population
+		dataType: int64
+		formatString: 0
+		lineageTag: 11c3975c-1bb1-4c95-85e3-9ca34864d1f6
+		summarizeBy: none
+		sourceColumn: Population
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Province / State'
+		dataType: string
+		lineageTag: 153c5613-1203-44d6-b1d9-f95cb9a74024
+		dataCategory: StateOrProvince
+		summarizeBy: none
+		sourceColumn: Province / State
+
+		annotation SummarizationSetBy = Automatic
+
+	partition GEO_DATA = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\skamatam\Downloads\HRM.xlsx"), null, true),
+				    GEO_DATA_Table = Source{[Item="GEO_DATA",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(GEO_DATA_Table,{{"City", type text}, {"Country", type text}, {"Lattitude", type number}, {"Longitude", type number}, {"Population", Int64.Type}, {"Province / State", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
