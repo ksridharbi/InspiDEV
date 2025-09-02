@@ -1,0 +1,9 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definitionProperties/2.0.0/schema.json",
+  "version": "4.0",
+  "datasetReference": {
+    "byConnection": {
+      "connectionString": "Data Source=\"powerbi://api.powerbi.com/v1.0/myorg/My workspace\";initial catalog=\"HR Analytics\";integrated security=ClaimsToken;semanticmodelid=e22fe940-9bd5-4fd1-802e-cd35f1b956e1"
+    }
+  }
+}
