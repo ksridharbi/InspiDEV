@@ -1,0 +1,7 @@
+role 'Australia Olnly'
+	modelPermission: read
+
+	tablePermission RLS_Sales = [Country] == "Australia" || [CountryCode] == "AT"
+
+	annotation PBI_Id = 324370049be643f595eb527818884bb7
+

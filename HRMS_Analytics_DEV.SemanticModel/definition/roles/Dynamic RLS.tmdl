@@ -1,0 +1,9 @@
+role 'Dynamic RLS'
+	modelPermission: read
+
+	tablePermission Security1 = [Email] = USERPRINCIPALNAME()
+
+	tablePermission PLS = [Email] = USERPRINCIPALNAME()
+
+	annotation PBI_Id = fd55e99559ed4a67a65c855ea0f91757
+

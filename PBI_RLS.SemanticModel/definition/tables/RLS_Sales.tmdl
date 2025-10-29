@@ -1,0 +1,44 @@
+table RLS_Sales
+	lineageTag: 748f3e38-4ac7-45a9-81f1-4e5de04bc910
+	sourceLineageTag: [dbo].[RLS_Sales]
+
+	column CountryCode
+		dataType: string
+		sourceProviderType: varchar(50)
+		lineageTag: c84d1d5c-2d3d-4134-84c1-1b0e2412cd82
+		sourceLineageTag: CountryCode
+		summarizeBy: none
+		sourceColumn: CountryCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		sourceProviderType: varchar(50)
+		lineageTag: 7c81c143-311d-47a4-a8fb-fa5dfd8efe71
+		sourceLineageTag: Country
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sales
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 6d9d871f-f10b-4ad0-b0d8-d860322e008a
+		sourceLineageTag: Sales
+		summarizeBy: sum
+		sourceColumn: Sales
+
+		annotation SummarizationSetBy = Automatic
+
+	partition RLS_Sales = entity
+		mode: directLake
+		source
+			entityName: RLS_Sales
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

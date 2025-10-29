@@ -1,0 +1,7 @@
+role 'Other Country'
+	modelPermission: read
+
+	tablePermission RLS_Sales = [Country] <> "Australia" && NOT([CountryCode] IN {"AT"})
+
+	annotation PBI_Id = c30d34faab1143caa766087305dbea4a
+

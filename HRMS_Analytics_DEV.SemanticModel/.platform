@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "HRMS_Analytics_DEV"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "a31f33f9-403e-954c-4d5b-ed973aac81f2"
+  }
+}

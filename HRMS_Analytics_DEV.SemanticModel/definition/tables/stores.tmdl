@@ -1,0 +1,137 @@
+table stores
+	lineageTag: b16aa895-990d-466d-bab4-e0c1f4968620
+
+	column store_id
+		dataType: string
+		lineageTag: aa3543e4-02dd-4ff7-95a5-f452698acc09
+		summarizeBy: none
+		sourceColumn: store_id
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column storetype_id
+		dataType: string
+		lineageTag: 260f8b6c-8481-4917-92b0-46b2290017f0
+		summarizeBy: none
+		sourceColumn: storetype_id
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column 'store size'
+		dataType: int64
+		formatString: 0
+		lineageTag: 7e6c33f2-15e9-4c48-b97e-9e62806fc97f
+		summarizeBy: sum
+		sourceColumn: store size
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column city_id
+		dataType: string
+		lineageTag: 7d760229-5f5e-4b75-bc73-2173602b028a
+		summarizeBy: none
+		sourceColumn: city_id
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column 'state abr'
+		dataType: string
+		lineageTag: 8cd9c12d-7e15-40b8-a0d8-51e423153e58
+		summarizeBy: none
+		sourceColumn: state abr
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column state
+		dataType: string
+		lineageTag: d3c76fe2-6a96-401c-a9e4-0853815590a6
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column city
+		dataType: string
+		lineageTag: 9e0c1e32-fc90-41db-b7d7-1eff2ab3cff3
+		summarizeBy: none
+		sourceColumn: city
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column lat
+		dataType: string
+		lineageTag: 0fbce6ee-7e13-4a1a-a28d-a1b1b96732ff
+		summarizeBy: none
+		sourceColumn: lat
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column long
+		dataType: string
+		lineageTag: 7aae5ecb-18b0-45e7-b165-bb3a4a56dfe0
+		summarizeBy: none
+		sourceColumn: long
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column 'Cost type'
+		dataType: string
+		lineageTag: 9dcc3484-c002-48e4-ab5a-fa8ed8eff560
+		summarizeBy: none
+		sourceColumn: Cost type
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column 'Cost amount'
+		dataType: int64
+		formatString: 0
+		lineageTag: 0783f198-df00-4650-8c42-cd04ab1dde9d
+		summarizeBy: sum
+		sourceColumn: Cost amount
+
+		annotation SummarizationSetBy = Automatic
+
+	partition stores-92911879-3c78-4654-8a07-eccf4fe6c6f4 = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("E:\Udemy - Storage\12  - 15 Days of Power BI\Data\Day 2\data\store_cities\store_cities.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Extracted Text Before Delimiter" = Table.TransformColumns(#"Promoted Headers", {{"store_szie", each Text.BeforeDelimiter(_, " "), type text}}),
+				    #"Split Column by Delimiter" = Table.SplitColumn(#"Extracted Text Before Delimiter", "state - state abr - city", Splitter.SplitTextByDelimiter("-", QuoteStyle.Csv), {"state - state abr - city.1", "state - state abr - city.2", "state - state abr - city.3"}),
+				    #"Split Column by Delimiter1" = Table.SplitColumn(#"Split Column by Delimiter", "lat / long", Splitter.SplitTextByDelimiter("/", QuoteStyle.Csv), {"lat / long.1", "lat / long.2"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Split Column by Delimiter1",{{"state - state abr - city.1", "state abr"}, {"state - state abr - city.2", "state"}, {"state - state abr - city.3", "city"}, {"lat / long.1", "lat"}, {"lat / long.2", "long"}}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Renamed Columns",{{"city", Text.Trim, type text}, {"long", Text.Trim, type text}, {"lat", Text.Trim, type text}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Trimmed Text", {"store_id"}, #"Stores - construction costs", {"store_id"}, "Stores - construction costs", JoinKind.LeftOuter),
+				    #"Expanded Stores - construction costs" = Table.ExpandTableColumn(#"Merged Queries", "Stores - construction costs", {"store_id", "building-costs", "land and devolopment costs", "Other related costs"}, {"store_id.1", "building-costs", "land and devolopment costs", "Other related costs"}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Expanded Stores - construction costs",{"store_id.1"}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Removed Columns",{{"Other related costs", Int64.Type}, {"land and devolopment costs", Int64.Type}, {"building-costs", Int64.Type}}),
+				    #"Unpivoted Columns" = Table.UnpivotOtherColumns(#"Changed Type", {"store_id", "storetype_id", "store_szie", "city_id", "state abr", "state", "city", "lat", "long"}, "Attribute", "Value"),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Unpivoted Columns",{{"Attribute", "Cost type"}, {"Value", "Cost amount"}}),
+				    #"Trimmed Text1" = Table.TransformColumns(#"Renamed Columns1",{{"state", Text.Trim, type text}, {"state abr", Text.Trim, type text}}),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Trimmed Text1",{{"store_szie", "store size"}})
+				in
+				    #"Renamed Columns2"
+
+	annotation PBI_ResultType = Table
+

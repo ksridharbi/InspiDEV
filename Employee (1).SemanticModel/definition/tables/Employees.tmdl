@@ -1,0 +1,59 @@
+table Employees
+	lineageTag: 5524eb9f-bda5-4cc2-945c-13b82debe315
+
+	column EmployeeID
+		dataType: string
+		lineageTag: 261cad01-04c4-4bbf-b436-6516a4c1113f
+		summarizeBy: none
+		sourceColumn: EmployeeID
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmployeeName
+		dataType: string
+		lineageTag: 211ae345-06cf-48a2-b922-c07b27d0e3cb
+		summarizeBy: none
+		sourceColumn: EmployeeName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Email
+		dataType: string
+		lineageTag: df4fc5ae-1bb9-436d-ab32-882d4e73d647
+		summarizeBy: none
+		sourceColumn: Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column Department
+		dataType: string
+		lineageTag: 5551d6d2-a860-45c9-9ade-bab10b2c600b
+		summarizeBy: none
+		sourceColumn: Department
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Employees = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\skamatam\Downloads\Employee_Course_RLS_Dataset.xlsx"), null, true),
+				    Employees_Sheet = Source{[Item="Employees",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Employees_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(
+				        #"Promoted Headers",
+				        {
+				            {"EmployeeID", type text},
+				            {"EmployeeName", type text},
+				            {"Email", type text},
+				            {"Department", type text}
+				        }
+				    ),
+				    #"Removed Blank Rows" = Table.SelectRows(#"Changed Type", each [EmployeeID] <> null and [EmployeeID] <> "")
+				in
+				    #"Removed Blank Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

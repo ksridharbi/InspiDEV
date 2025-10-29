@@ -1,0 +1,205 @@
+table CourseCompletion
+	lineageTag: 2d02412b-178a-4407-b2d9-083b4c15fd74
+
+	measure TotalCourses = ```
+			COUNTROWS(CourseCompletion)
+			
+			```
+		formatString: 0
+		lineageTag: 5c6972f6-3904-48be-a6d6-17bbc541c22e
+
+	measure CompletedCourses = ```
+			CALCULATE(COUNTROWS(CourseCompletion), CourseCompletion[Status] = "Completed")
+			
+			```
+		formatString: 0
+		lineageTag: fa878d78-6dd0-4b43-8234-1b332fcb47f5
+
+	measure CompletionRate = ```
+			DIVIDE([CompletedCourses], [TotalCourses], 0)
+			
+			```
+		formatString: 0%;-0%;0%
+		lineageTag: 361bd785-2c34-447d-917b-33482438cfe8
+
+	measure PendingCourses = ```
+			
+			VAR cnt =
+			    CALCULATE(
+			        COUNTROWS(CourseCompletion),
+			        CourseCompletion[Status] = "Not Completed"
+			    )
+			RETURN
+			IF(ISBLANK(cnt), 0, cnt)
+			
+			
+			```
+		formatString: 0
+		lineageTag: e8949eeb-66e3-47c7-abff-75e1915945d7
+
+	measure OverdueCourses = ```
+			
+			VAR cnt =
+			    CALCULATE(
+			        COUNTROWS(CourseCompletion),
+			        CourseCompletion[OverdueFlag] = 1
+			    )
+			RETURN
+			IF(ISBLANK(cnt), 0, cnt)
+			
+			```
+		formatString: 0
+		lineageTag: 2a0fce91-f53a-409b-bddd-14745f1c723c
+
+	measure PendingPerEmployee = ```
+			
+			CALCULATE(
+			    COUNTROWS(CourseCompletion),
+			    FILTER(CourseCompletion, CourseCompletion[Status] = "Not Completed")
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 0526ebd0-492c-43c4-9881-483a8adeffa9
+
+	measure 'Count of CourseName' = count(CourseCompletion[CourseName])
+		formatString: 0
+		lineageTag: 880462e7-c178-4927-b2e7-dd700ffb7ae2
+
+	measure UserprincipleNameF = USERPRINCIPALNAME()
+		lineageTag: 413941d6-3876-46db-ae05-ef513fa97f76
+
+	measure UsernameF = USERNAME()
+		lineageTag: 44246570-89e3-4ff0-883f-f8edbed0ca5c
+
+	column EmployeeID
+		dataType: string
+		lineageTag: 5b1eaae7-5b59-44e1-af59-cbc7a7534903
+		summarizeBy: none
+		sourceColumn: EmployeeID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CourseName
+		dataType: string
+		lineageTag: 14d65dff-a6e2-4ca4-88fa-ad568cd24e84
+		summarizeBy: none
+		sourceColumn: CourseName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: c49f8153-7b78-476d-a8d1-85381b993d4b
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column CompletionDate
+		dataType: dateTime
+		formatString: dd-mmm-yy
+		lineageTag: fdb40753-2dd5-44b6-af2e-fbb4c890f213
+		summarizeBy: none
+		sourceColumn: CompletionDate
+
+		variation Variation
+			isDefault
+			relationship: 823d3b09-2c78-4f17-9054-40ac20220d8a
+			defaultHierarchy: LocalDateTable_65c9655a-f770-4723-aa89-ad94e1a2e1be.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column DueDate
+		dataType: dateTime
+		formatString: dd-mmm-yy
+		lineageTag: 33571cdb-349e-4b04-9229-1151a4e1bce4
+		summarizeBy: none
+		sourceColumn: DueDate
+
+		variation Variation
+			isDefault
+			relationship: c9d02846-c984-495d-8f53-94fb65dbbdf9
+			defaultHierarchy: LocalDateTable_d2637225-9ef1-457d-b4ef-9c8190ef0e51.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column OverdueFlag = ```
+			
+			IF(
+			    CourseCompletion[Status] = "Not Completed"
+			    && CourseCompletion[DueDate] < DATE(2025,10,20),
+			    1,
+			    0
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 8bc02ced-632f-4ebf-aa5c-5ff34f9c6b3f
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column DueSoonFlag = ```
+			
+			IF(
+			    CourseCompletion[Status] = "Not Completed"
+			    && CourseCompletion[DueDate] >= DATE(2025,10,20)
+			    && CourseCompletion[DueDate] <= DATE(2025,10,20) + 7,
+			    1,
+			    0
+			)
+			
+			```
+		formatString: 0
+		lineageTag: e59b23e4-8532-4720-a574-4767a71218f2
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column DaysRemaining = ```
+			
+			DATEDIFF(TODAY(), CourseCompletion[DueDate], DAY)
+			
+			
+			
+			
+			```
+		formatString: 0
+		lineageTag: e6757e1a-0b2c-4ce8-9768-6148a5bed049
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CourseCompletion = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\skamatam\Downloads\Employee_Course_RLS_Dataset.xlsx"), null, true),
+				    CourseCompletion_Sheet = Source{[Item="CourseCompletion",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(CourseCompletion_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(
+				        #"Promoted Headers",
+				        {
+				            {"EmployeeID", type text},
+				            {"CourseName", type text},
+				            {"Status", type text},
+				            {"CompletionDate", type date},
+				            {"DueDate", type date}
+				        }
+				    )
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

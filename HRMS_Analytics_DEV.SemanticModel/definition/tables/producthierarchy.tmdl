@@ -1,0 +1,119 @@
+table producthierarchy
+	lineageTag: 47cd50aa-1120-447d-a728-cfb29116a633
+
+	column product_id
+		dataType: string
+		lineageTag: 000c8a84-e5df-419f-bd7f-4dd458197ddb
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column 'product (brand)'
+		dataType: string
+		lineageTag: 2511e713-e160-4588-af44-3444469b15a0
+		summarizeBy: none
+		sourceColumn: product (brand)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column type
+		dataType: string
+		lineageTag: dec7b58c-76a6-4fcf-b1aa-8b1809f07bfd
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column length
+		dataType: int64
+		formatString: 0
+		lineageTag: d1b56122-a12d-48e8-ad09-1e7e9d1b6821
+		summarizeBy: none
+		sourceColumn: length
+
+		annotation SummarizationSetBy = Automatic
+
+	column depth
+		dataType: int64
+		formatString: 0
+		lineageTag: e33e43ca-c52c-4f29-98af-5e9c01f479ff
+		summarizeBy: none
+		sourceColumn: depth
+
+		annotation SummarizationSetBy = Automatic
+
+	column width
+		dataType: int64
+		formatString: 0
+		lineageTag: cf816fd9-4dc3-4e42-83b3-33d91851d5e2
+		summarizeBy: none
+		sourceColumn: width
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: e6581dae-b286-4886-803d-249cde651474
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column sub_category
+		dataType: string
+		lineageTag: 0bcf94de-e022-4909-83f0-5c681fa4b5a7
+		summarizeBy: none
+		sourceColumn: sub_category
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column volume
+		dataType: int64
+		formatString: 0
+		lineageTag: a08b2db6-32b2-4f01-951c-e5d4623f68e7
+		summarizeBy: none
+		sourceColumn: volume
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Short' = LEFT(producthierarchy[product (brand)],15)
+		lineageTag: 54b9001d-1655-400e-ae4f-d979d04da3f1
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	partition producthierarchy-1a6adcf6-5911-443f-9866-183a71df2d84 = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("E:\Udemy - Storage\12  - 15 Days of Power BI\Data\Day 2\data\producthierarchy\producthierarchy.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Cleaned Text" = Table.TransformColumns(#"Promoted Headers",{{"product (brand)", Text.Clean, type text}}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Cleaned Text",{{"product (brand)", Text.Trim, type text}}),
+				    #"Capitalized Each Word" = Table.TransformColumns(#"Trimmed Text",{{"product (brand)", Text.Proper, type text}}),
+				    #"Split Column by Delimiter" = Table.SplitColumn(#"Capitalized Each Word", "category || sub_category", Splitter.SplitTextByDelimiter(" || ", QuoteStyle.Csv), {"category || sub_category.1", "category || sub_category.2"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Split Column by Delimiter",{{"category || sub_category.1", "category"}, {"category || sub_category.2", "sub_category"}}),
+				    #"Split Column by Delimiter1" = Table.SplitColumn(#"Renamed Columns", "length x depth x width (in cm)", Splitter.SplitTextByDelimiter(" x ", QuoteStyle.Csv), {"length x depth x width (in cm).1", "length x depth x width (in cm).2", "length x depth x width (in cm).3"}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Split Column by Delimiter1",{{"length x depth x width (in cm).1", "length"}, {"length x depth x width (in cm).2", "depth"}, {"length x depth x width (in cm).3", "width"}}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns1",{{"length", Int64.Type}, {"depth", Int64.Type}, {"width", Int64.Type}}),
+				    #"Added Custom" = Table.AddColumn(#"Changed Type", "volume", each [length]*[depth]*[width]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"volume", Int64.Type}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type1",{""})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

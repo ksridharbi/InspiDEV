@@ -1,0 +1,42 @@
+{
+  "config": "{\"version\":\"5.67\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY25SU10\",\"type\":2,\"version\":{\"visual\":\"2.1.0\",\"report\":\"3.0.0\",\"page\":\"2.3.0\"}}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":0,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"useEnhancedTooltips\":true,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY25SU10",
+            "path": "BaseThemes/CY25SU10.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Page 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "c24647d1ce52182dc3b5",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"5ba0024162a75982c170\",\"layouts\":[{\"id\":0,\"position\":{\"x\":9.846153846153847,\"y\":0,\"z\":0,\"width\":1211.076923076923,\"height\":643.9384615384615,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"RLS_Sales.CountryCode\"},{\"queryRef\":\"RLS_Sales.Country\"},{\"queryRef\":\"Sum(RLS_Sales.Sales)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"r\",\"Entity\":\"RLS_Sales\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"Country\"},\"Name\":\"RLS_Sales.Country\",\"NativeReferenceName\":\"Country\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"CountryCode\"},\"Name\":\"RLS_Sales.CountryCode\",\"NativeReferenceName\":\"CountryCode\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"Sales\"},\"Name\":\"Sum(RLS_Sales.Sales)\",\"NativeReferenceName\":\"Sales\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"grid\":[{\"properties\":{\"gridHorizontalWeight\":{\"expr\":{\"Literal\":{\"Value\":\"3D\"}}}}}],\"values\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"20D\"}}}}}]},\"vcObjects\":{\"stylePreset\":[{\"properties\":{\"name\":{\"expr\":{\"Literal\":{\"Value\":\"'Default'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 643.94,
+          "width": 1211.08,
+          "x": 9.85,
+          "y": 0.00,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}

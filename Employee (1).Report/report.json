@@ -1,0 +1,174 @@
+{
+  "config": "{\"version\":\"5.66\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU10\",\"type\":2,\"version\":{\"visual\":\"1.8.95\",\"report\":\"2.0.95\",\"page\":\"1.3.95\"}}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true,\"useEnhancedTooltips\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY24SU10",
+            "path": "BaseThemes/CY24SU10.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Dashboard Overview",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "25bddb890cc5192ce059",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"0c5fdaa22009db89e80c\",\"layouts\":[{\"id\":0,\"position\":{\"x\":17.32589886560277,\"y\":12.600653720438377,\"z\":0,\"width\":222.0865218227264,\"height\":122.85637377427418,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"CourseCompletion.TotalCourses\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"CourseCompletion\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"TotalCourses\"},\"Name\":\"CourseCompletion.TotalCourses\",\"NativeReferenceName\":\"TotalCourses\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"TotalCourses\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"vcObjects\":{\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 122.86,
+          "width": 222.09,
+          "x": 17.33,
+          "y": 12.60,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"132a4ab250b9ca8c6132\",\"layouts\":[{\"id\":0,\"position\":{\"x\":510.3264756777543,\"y\":12.600653720438377,\"z\":1000,\"width\":229.9619303980004,\"height\":122.85637377427418,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"CourseCompletion.CompletedCourses\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"CourseCompletion\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"CompletedCourses\"},\"Name\":\"CourseCompletion.CompletedCourses\",\"NativeReferenceName\":\"CompletedCourses\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"CompletedCourses\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"vcObjects\":{\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"width\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}],\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 122.86,
+          "width": 229.96,
+          "x": 510.33,
+          "y": 12.60,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"41ac2d687b0ed859c9e0\",\"layouts\":[{\"id\":0,\"position\":{\"x\":670,\"y\":641.4285714285714,\"z\":9000,\"width\":581.4285714285714,\"height\":78.57142857142857,\"tabOrder\":9000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"CourseCompletion.UsernameF\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"CourseCompletion\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"UsernameF\"},\"Name\":\"CourseCompletion.UsernameF\",\"NativeReferenceName\":\"UsernameF\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"30D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 78.57,
+          "width": 581.43,
+          "x": 670.00,
+          "y": 641.43,
+          "z": 9000.00
+        },
+        {
+          "config": "{\"name\":\"550e888a242950bcb865\",\"layouts\":[{\"id\":0,\"position\":{\"x\":261.4635646990963,\"y\":12.600653720438377,\"z\":2000,\"width\":222.0865218227264,\"height\":122.85637377427418,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"CourseCompletion.CompletionRate\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"CourseCompletion\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"CompletionRate\"},\"Name\":\"CourseCompletion.CompletionRate\",\"NativeReferenceName\":\"CompletionRate\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"CompletionRate\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"vcObjects\":{\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"width\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}],\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 122.86,
+          "width": 222.09,
+          "x": 261.46,
+          "y": 12.60,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"7eef7f3e38adc2324953\",\"layouts\":[{\"id\":0,\"position\":{\"x\":17.32589886560277,\"y\":642.6333397423573,\"z\":8000,\"width\":611.1317054412613,\"height\":77.17900403768506,\"tabOrder\":8000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"CourseCompletion.UserprincipleNameF\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"CourseCompletion\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"UserprincipleNameF\"},\"Name\":\"CourseCompletion.UserprincipleNameF\",\"NativeReferenceName\":\"UserprincipleNameF\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"30D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 77.18,
+          "width": 611.13,
+          "x": 17.33,
+          "y": 642.63,
+          "z": 8000.00
+        },
+        {
+          "config": "{\"name\":\"8f950904eed145e65224\",\"layouts\":[{\"id\":0,\"position\":{\"x\":760.764468371467,\"y\":12.600653720438377,\"z\":4000,\"width\":231.53701211305517,\"height\":122.85637377427418,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"CourseCompletion.OverdueCourses\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"CourseCompletion\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"OverdueCourses\"},\"Name\":\"CourseCompletion.OverdueCourses\",\"NativeReferenceName\":\"OverdueCourses\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"OverdueCourses\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"vcObjects\":{\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"width\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}],\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 122.86,
+          "width": 231.54,
+          "x": 760.76,
+          "y": 12.60,
+          "z": 4000.00
+        },
+        {
+          "config": "{\"name\":\"d27df81094504738adcb\",\"layouts\":[{\"id\":0,\"position\":{\"x\":14.175735435493175,\"y\":149.63276293020573,\"z\":7000,\"width\":1266.365698904057,\"height\":245.71274754854835,\"tabOrder\":7000}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Employees.EmployeeName\"},{\"queryRef\":\"CourseCompletion.CourseName\"},{\"queryRef\":\"CourseCompletion.Status\"},{\"queryRef\":\"CourseCompletion.DueDate\"},{\"queryRef\":\"CourseCompletion.CompletionDate\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"e\",\"Entity\":\"Employees\",\"Type\":0},{\"Name\":\"c\",\"Entity\":\"CourseCompletion\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"EmployeeName\"},\"Name\":\"Employees.EmployeeName\",\"NativeReferenceName\":\"EmployeeName\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"CourseName\"},\"Name\":\"CourseCompletion.CourseName\",\"NativeReferenceName\":\"CourseName\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Status\"},\"Name\":\"CourseCompletion.Status\",\"NativeReferenceName\":\"Status\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"DueDate\"},\"Name\":\"CourseCompletion.DueDate\",\"NativeReferenceName\":\"DueDate\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"CompletionDate\"},\"Name\":\"CourseCompletion.CompletionDate\",\"NativeReferenceName\":\"CompletionDate\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Status\"}}}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"grid\":[{\"properties\":{\"gridHorizontalWeight\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}},\"gridVerticalWeight\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}],\"values\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"15D\"}}}}}],\"columnHeaders\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"15D\"}}}}}],\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"243.46840525233603D\"}}}},\"selector\":{\"metadata\":\"CourseCompletion.DueDate\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"240.58226809234395D\"}}}},\"selector\":{\"metadata\":\"CourseCompletion.Status\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"314.1518984854747D\"}}}},\"selector\":{\"metadata\":\"CourseCompletion.CourseName\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"215.22784609965277D\"}}}},\"selector\":{\"metadata\":\"Employees.EmployeeName\"}}]},\"vcObjects\":{\"stylePreset\":[{\"properties\":{\"name\":{\"expr\":{\"Literal\":{\"Value\":\"'Condensed'\"}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.5}}}}}}}],\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 245.71,
+          "width": 1266.37,
+          "x": 14.18,
+          "y": 149.63,
+          "z": 7000.00
+        },
+        {
+          "config": "{\"name\":\"d5dd6b530b2040142cb4\",\"layouts\":[{\"id\":0,\"position\":{\"x\":17.840252546310083,\"y\":407.58115432723804,\"z\":5000,\"width\":629.8981475966407,\"height\":216.82768479361485,\"tabOrder\":5000}}],\"singleVisual\":{\"visualType\":\"barChart\",\"projections\":{\"Category\":[{\"queryRef\":\"Employees.Department\",\"active\":true}],\"Y\":[{\"queryRef\":\"CourseCompletion.CompletionRate\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"e\",\"Entity\":\"Employees\",\"Type\":0},{\"Name\":\"c\",\"Entity\":\"CourseCompletion\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"Department\"},\"Name\":\"Employees.Department\",\"NativeReferenceName\":\"Department\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"CompletionRate\"},\"Name\":\"CourseCompletion.CompletionRate\",\"NativeReferenceName\":\"CompletionRate\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"CompletionRate\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"enableDetailDataLabel\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"bold\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"ribbonBands\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"dataPoint\":[{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#41ADD8'\"}}}}},\"fillTransparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"borderShow\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"borderSize\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}},\"borderColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#41ADD8'\"}}}}}}}],\"valueAxis\":[{\"properties\":{\"gridlineStyle\":{\"expr\":{\"Literal\":{\"Value\":\"'dotted'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"15D\"}}},\"bold\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"categoryAxis\":[{\"properties\":{\"bold\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"maxMarginFactor\":{\"expr\":{\"Literal\":{\"Value\":\"24L\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"18D\"}}},\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'''Segoe UI Bold'', wf_segoe-ui_bold, helvetica, arial, sans-serif'\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'center'\"}}}}}],\"spacing\":[{\"properties\":{\"customizeSpacing\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.5}}}}},\"width\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}],\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 216.83,
+          "width": 629.90,
+          "x": 17.84,
+          "y": 407.58,
+          "z": 5000.00
+        },
+        {
+          "config": "{\"name\":\"dd62762e556450295e01\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1017.5027879253989,\"y\":12.600653720438377,\"z\":3000,\"width\":234.68717554316478,\"height\":122.85637377427418,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"CourseCompletion.PendingCourses\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"CourseCompletion\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"PendingCourses\"},\"Name\":\"CourseCompletion.PendingCourses\",\"NativeReferenceName\":\"PendingCourses\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"PendingCourses\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"vcObjects\":{\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"width\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}],\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 122.86,
+          "width": 234.69,
+          "x": 1017.50,
+          "y": 12.60,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"f85c2cb6a3e93d50696e\",\"layouts\":[{\"id\":0,\"position\":{\"x\":669.6956340461016,\"y\":407.58115432723804,\"z\":6000,\"width\":591.4729882661267,\"height\":216.82768479361485,\"tabOrder\":6000}}],\"singleVisual\":{\"visualType\":\"pieChart\",\"projections\":{\"Category\":[{\"queryRef\":\"CourseCompletion.Status\",\"active\":true}],\"Y\":[{\"queryRef\":\"CourseCompletion.TotalCourses\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"CourseCompletion\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Status\"},\"Name\":\"CourseCompletion.Status\",\"NativeReferenceName\":\"Status\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"TotalCourses\"},\"Name\":\"CourseCompletion.TotalCourses\",\"NativeReferenceName\":\"TotalCourses\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"TotalCourses\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"dataPoint\":[{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#41ADD8'\"}}}}},\"fillTransparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"borderShow\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"borderSize\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}},\"borderColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#41ADD8'\"}}}}}}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":8,\"Percent\":0.2}}}}},\"borderColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":8,\"Percent\":0.2}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"CourseCompletion\"}},\"Property\":\"Status\"}},\"Right\":{\"Literal\":{\"Value\":\"'Not Completed'\"}}}}}]}}],\"labels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"bold\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'center'\"}}}}}],\"spacing\":[{\"properties\":{\"customizeSpacing\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"border\":[{\"properties\":{\"width\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}},\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.5}}}}}}}],\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 216.83,
+          "width": 591.47,
+          "x": 669.70,
+          "y": 407.58,
+          "z": 6000.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Pending Courses",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "2cf0e169704901387000",
+      "ordinal": 1,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"4b7747dabe63412e5cd2\",\"layouts\":[{\"id\":0,\"position\":{\"x\":37.801961161315134,\"y\":17.32589886560277,\"z\":1000,\"width\":212.63603153239762,\"height\":148.05768121515092,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Sum(CourseCompletion.DaysRemaining)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"CourseCompletion\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"DaysRemaining\"}},\"Function\":0},\"Name\":\"Sum(CourseCompletion.DaysRemaining)\",\"NativeReferenceName\":\"Sum of DaysRemaining\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"DaysRemaining\"}},\"Function\":0}}}]},\"autoSelectVisualType\":true,\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 148.06,
+          "width": 212.64,
+          "x": 37.80,
+          "y": 17.33,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"b6651d62796d221adc29\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":397.14285714285717,\"z\":0,\"width\":1271.4285714285716,\"height\":310,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Employees.EmployeeName\"},{\"queryRef\":\"CourseCompletion.CourseName\"},{\"queryRef\":\"CourseCompletion.DueDate\"},{\"queryRef\":\"Sum(CourseCompletion.OverdueFlag)\"},{\"queryRef\":\"Sum(CourseCompletion.DueSoonFlag)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"e\",\"Entity\":\"Employees\",\"Type\":0},{\"Name\":\"c\",\"Entity\":\"CourseCompletion\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"EmployeeName\"},\"Name\":\"Employees.EmployeeName\",\"NativeReferenceName\":\"EmployeeName\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"CourseName\"},\"Name\":\"CourseCompletion.CourseName\",\"NativeReferenceName\":\"CourseName\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"OverdueFlag\"}},\"Function\":0},\"Name\":\"Sum(CourseCompletion.OverdueFlag)\",\"NativeReferenceName\":\"Sum of OverdueFlag\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"DueSoonFlag\"}},\"Function\":0},\"Name\":\"Sum(CourseCompletion.DueSoonFlag)\",\"NativeReferenceName\":\"Sum of DueSoonFlag\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"DueDate\"},\"Name\":\"CourseCompletion.DueDate\",\"NativeReferenceName\":\"DueDate\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"CourseName\"}}}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"grid\":[{\"properties\":{\"gridVerticalWeight\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}},\"gridHorizontalWeight\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}],\"columnHeaders\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"18D\"}}}}}],\"values\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"20D\"}}}}}],\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"205.0598409645155D\"}}}},\"selector\":{\"metadata\":\"CourseCompletion.DueDate\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"240.58226809234395D\"}}}},\"selector\":{\"metadata\":\"CourseCompletion.Status\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"314.1518984854747D\"}}}},\"selector\":{\"metadata\":\"CourseCompletion.CourseName\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"215.22784609965277D\"}}}},\"selector\":{\"metadata\":\"Employees.EmployeeName\"}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.5}}}}},\"width\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}],\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"stylePreset\":[{\"properties\":{\"name\":{\"expr\":{\"Literal\":{\"Value\":\"'Condensed'\"}}}}}]}}}",
+          "filters": "[{\"name\":\"daa889471d0e0b172a42\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"CourseCompletion\"}},\"Property\":\"Status\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"CourseCompletion\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Status\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'Not Completed'\"}}]]}}}]},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{}}]",
+          "height": 310.00,
+          "width": 1271.43,
+          "x": 0.00,
+          "y": 397.14,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Page 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "58c2c6449665d84386f6",
+      "ordinal": 2,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"79db63d542f208585e40\",\"layouts\":[{\"id\":0,\"position\":{\"x\":10,\"y\":12.857142857142858,\"z\":0,\"width\":424.28571428571433,\"height\":677.1428571428572,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Row Level Security :\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontSize\":\"16pt\"}}]},{\"textRuns\":[{\"value\":\"Row-level security (RLS) with Power BI can be used to restrict data access for given users. Filters restrict data access at the row level, and you can define filters within roles.\",\"textStyle\":{\"fontSize\":\"16pt\",\"color\":\"#171717\"}}]},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"Type of RLS :\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontSize\":\"16pt\",\"color\":\"#171717\"}}]},{\"textRuns\":[{\"value\":\"Static Row Level Security\",\"textStyle\":{\"fontSize\":\"16pt\",\"color\":\"#171717\"}}]},{\"textRuns\":[{\"value\":\"Dynamic Row Level Security\",\"textStyle\":{\"fontSize\":\"16pt\",\"color\":\"#171717\"}}]},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"Works on :\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontSize\":\"16pt\",\"color\":\"#171717\"}}]},{\"textRuns\":[{\"value\":\"Apps\",\"textStyle\":{\"fontSize\":\"16pt\",\"color\":\"#171717\"}}]},{\"textRuns\":[{\"value\":\"Reports\",\"textStyle\":{\"fontSize\":\"16pt\",\"color\":\"#171717\"}}]},{\"textRuns\":[{\"value\":\"Dashboards\",\"textStyle\":{\"fontSize\":\"16pt\",\"color\":\"#171717\"}}]},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"Does not work on:\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontSize\":\"16pt\",\"color\":\"#171717\"}}]},{\"textRuns\":[{\"value\":\"Workspaces \",\"textStyle\":{\"fontSize\":\"16pt\",\"color\":\"#171717\"}}]},{\"textRuns\":[{\"value\":\"Live Data Connection\",\"textStyle\":{\"fontSize\":\"16pt\",\"color\":\"#171717\"}}]}]}}]},\"vcObjects\":{\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":2,\"Percent\":0.6}}}}},\"radius\":{\"expr\":{\"Literal\":{\"Value\":\"5D\"}}},\"width\":{\"expr\":{\"Literal\":{\"Value\":\"2D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 677.14,
+          "width": 424.29,
+          "x": 10.00,
+          "y": 12.86,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}

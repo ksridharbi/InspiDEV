@@ -1,0 +1,20 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["Employees","CourseCompletion"]
+
+ref table Employees
+ref table CourseCompletion
+ref table DateTableTemplate_72f9f66e-e7a4-442f-9ea0-fe3d91622daa
+ref table LocalDateTable_d2637225-9ef1-457d-b4ef-9c8190ef0e51
+ref table LocalDateTable_65c9655a-f770-4723-aa89-ad94e1a2e1be
+
+ref cultureInfo en-US
+

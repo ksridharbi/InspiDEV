@@ -1,0 +1,191 @@
+table sales2018-2019
+	lineageTag: bf1d7fb5-6260-44c5-885e-c35e544c61b8
+
+	column order_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 4c6ba080-9011-4fdf-9719-50d17a1a4e3c
+		summarizeBy: sum
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_id
+		dataType: string
+		lineageTag: c7d1b33c-94f4-42e1-8562-9c46e25cc838
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column store_id
+		dataType: string
+		lineageTag: 6ac3bbb3-9a26-402c-b56d-33b706031084
+		summarizeBy: none
+		sourceColumn: store_id
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column sales
+		dataType: int64
+		formatString: 0
+		lineageTag: bacf2da0-c57e-44b0-a98b-9ba07747e2c0
+		summarizeBy: sum
+		sourceColumn: sales
+
+		annotation SummarizationSetBy = Automatic
+
+	column revenue
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: ce08b68d-1110-4eea-aeb8-838509ddb763
+		summarizeBy: sum
+		sourceColumn: revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column stock
+		dataType: int64
+		formatString: 0
+		lineageTag: b728fa77-b891-4d30-a237-1d5c4c703659
+		summarizeBy: sum
+		sourceColumn: stock
+
+		annotation SummarizationSetBy = Automatic
+
+	column price
+		dataType: double
+		lineageTag: d5348c6a-f50e-41ce-ace4-e8637dd5ead7
+		summarizeBy: sum
+		sourceColumn: price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column promo_type_1
+		dataType: string
+		lineageTag: ce06f680-c2c8-4f74-8c93-f9bb9cd2ca14
+		summarizeBy: none
+		sourceColumn: promo_type_1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column promo_bin_1
+		dataType: string
+		lineageTag: 2363be03-41d0-40bb-9dca-7d5ae38cac7a
+		summarizeBy: none
+		sourceColumn: promo_bin_1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column promo_type_2
+		dataType: string
+		lineageTag: e606be32-b623-4cd3-9b71-968fd63d3305
+		summarizeBy: none
+		sourceColumn: promo_type_2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column promo_bin_2
+		dataType: string
+		lineageTag: 6b822953-4768-4cae-a3e5-194720aa9276
+		summarizeBy: none
+		sourceColumn: promo_bin_2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column promo_discount_2
+		dataType: string
+		lineageTag: 9142577a-e3a2-4432-a2bf-cd979b725d62
+		summarizeBy: none
+		sourceColumn: promo_discount_2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column delivery_date_format1
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9722edc0-7c00-48b5-9923-99ba4e58ff14
+		summarizeBy: none
+		sourceColumn: delivery_date_format1
+
+		variation Variation
+			isDefault
+			relationship: 03e31a11-a83f-47b5-a235-62ecaebf546a
+			defaultHierarchy: LocalDateTable_6a476db2-99e2-4334-bce0-f8176fea1617.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column delivery_date_format2
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 81ff31c7-7bbd-492e-ac7d-fec915fe8629
+		summarizeBy: none
+		sourceColumn: delivery_date_format2
+
+		variation Variation
+			isDefault
+			relationship: 1d47648a-a224-4a20-a237-c37413e5edec
+			defaultHierarchy: LocalDateTable_c408af42-773b-4176-b757-865fcd4929f6.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Order Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: a1f9094f-822d-461d-b36e-3eb2c9d7ad26
+		summarizeBy: none
+		sourceColumn: Order Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'New price alternative' = ROUNDUP('sales2018-2019'[price],0)-0.01
+		lineageTag: 1a53e6e1-7c93-49ba-9c4c-68f734c18834
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition sales2018-2019-2fc5c250-a0ec-4c3f-a033-9b1b4d26f8a9 = m
+		mode: import
+		source =
+				let
+				    Source = Table.Combine({sales2019, sales2018}),
+				    #"Replaced Value" = Table.ReplaceValue(Source,"NA","",Replacer.ReplaceText,{"price"}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Replaced Value",{{"order_id", Int64.Type}, {"product_id", type text}, {"store_id", type text}, {"order_date", type date}, {"order_date_2", type date}, {"sales", Int64.Type}, {"revenue", type number}, {"stock", Int64.Type}, {"price", type number}, {"promo_type_1", type text}, {"promo_bin_1", type text}, {"promo_type_2", type text}, {"promo_bin_2", type text}, {"promo_discount_2", type text}, {"delivery_date_format1", type date}}),
+				    #"Changed Type with Locale" = Table.TransformColumnTypes(#"Changed Type", {{"delivery_date_format2", type date}}, "en-GB"),
+				    #"Appended Query" = Table.Combine({#"Changed Type with Locale", sales2017}),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Appended Query",{"order_id", "product_id", "store_id", "order_date", "Order Date", "order_date_2", "sales", "revenue", "stock", "price", "promo_type_1", "promo_bin_1", "promo_type_2", "promo_bin_2", "promo_discount_2", "delivery_date_format1", "delivery_date_format2"}),
+				    #"Merged Columns" = Table.CombineColumns(Table.TransformColumnTypes(#"Reordered Columns", {{"order_date", type text}, {"Order Date", type text}}, "en-US"),{"order_date", "Order Date"},Combiner.CombineTextByDelimiter("", QuoteStyle.None),"Order Date.1"),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Merged Columns",{{"Order Date.1", type date}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type1",{{"Order Date.1", "Order Date"}, {"order_id", "order_id"}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Renamed Columns",{"order_date_2"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

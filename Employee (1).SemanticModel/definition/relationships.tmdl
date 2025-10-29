@@ -1,0 +1,14 @@
+relationship AutoDetected_a18d5293-0919-4635-89ee-eed176066b1d
+	fromColumn: CourseCompletion.EmployeeID
+	toColumn: Employees.EmployeeID
+
+relationship c9d02846-c984-495d-8f53-94fb65dbbdf9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: CourseCompletion.DueDate
+	toColumn: LocalDateTable_d2637225-9ef1-457d-b4ef-9c8190ef0e51.Date
+
+relationship 823d3b09-2c78-4f17-9054-40ac20220d8a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: CourseCompletion.CompletionDate
+	toColumn: LocalDateTable_65c9655a-f770-4723-aa89-ad94e1a2e1be.Date
+
